@@ -52,22 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => sectionObserver.observe(section));
   }
 
-  // Reveal-on-scroll animation with a graceful fallback.
-  const revealItems = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealItems.forEach(item => revealObserver.observe(item));
-  } else {
-    revealItems.forEach(item => item.classList.add('revealed'));
-  }
-
   // Accessible FAQ accordion; keep one answer open at a time.
   document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
